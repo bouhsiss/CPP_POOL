@@ -4,16 +4,23 @@
 #include "contact.hpp"
 #pragma once
 
+#define MAX_CONTACTS 8
+#define MAX_WIDTH 10
 
 class PhoneBook {
 	public :
-		PhoneBook(){};
-		~PhoneBook(){};
-		int ContactNumber;
-		void SetInfos(int index);
+		PhoneBook();
+		~PhoneBook();
+		void AddContact();
 		void SearchContact(void);
 	private :
+		void DisplayPhoneBook();
+		void DisplayContact(int index);
 		Contact Contacts[8];
+		Contact SetInfos();
+		void DisplayHeader();
+		int ContactsNumber;
+		int	oldest;
 };
 
 #endif
