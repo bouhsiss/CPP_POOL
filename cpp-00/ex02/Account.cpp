@@ -53,7 +53,7 @@ void Account::displayStatus(void) const{
 	std::cout << "withdrawals:" << this->_nbWithdrawals << std::endl; 
 }
 
-int Account::getNbAccounts(){
+int Account::getNbAccounts() {
 	return(_nbAccounts);
 }
 
