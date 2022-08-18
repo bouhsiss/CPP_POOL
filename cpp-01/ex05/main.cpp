@@ -15,4 +15,6 @@ int main()
 
 	instance.complain("error");
 	instance.complain("ERROR");
+
+	instance.complain("hfug");
 }

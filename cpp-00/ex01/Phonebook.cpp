@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   Phonebook.cpp                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hbouhsis <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/08/17 19:53:22 by hbouhsis          #+#    #+#             */
+/*   Updated: 2022/08/17 19:53:25 by hbouhsis         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "Phonebook.hpp"
 
 Contact PhoneBook::SetInfos(){
@@ -6,16 +18,20 @@ Contact PhoneBook::SetInfos(){
 	std::cout <<  "*=================================================*" << std::endl;
 	std::cout << "Please enter the required contact's informations !!" << std::endl;
 	std::cout << "First name :" << std::endl;
-	std::cin.ignore(10000,'\n');
-	getline(std::cin, tmp[0]);
+	while(tmp[0].empty())
+		getline(std::cin, tmp[0]);
 	std::cout << "Last name :" << std::endl;
-	getline(std::cin, tmp[1]);
+	while(tmp[1].empty())
+		getline(std::cin, tmp[1]);
 	std::cout << "Nickname :" << std::endl;
-	getline(std::cin, tmp[2]);
+	while(tmp[2].empty())
+		getline(std::cin, tmp[2]);
 	std::cout << "Phone number :" << std::endl;
-	getline(std::cin, tmp[3]);
+	while(tmp[3].empty())
+		getline(std::cin, tmp[3]);
 	std::cout << "Darkest secret :" << std::endl;
-	getline(std::cin, tmp[4]);
+	while(tmp[4].empty())
+		getline(std::cin, tmp[4]);
 	std::cout <<  "*=================================================*" << std::endl;
 
 	Contact ContactInstance(tmp);

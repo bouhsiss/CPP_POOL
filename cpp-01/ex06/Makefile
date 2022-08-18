@@ -1,7 +1,7 @@
-NAME   = replace
+NAME   = HarlFilter
 CC	= c++
 CFLAGS = -Wall -Wextra -Werror -std=c++98 -fsanitize=address
-SRCS = ./main.cpp
+SRCS = ./main.cpp ./Harl.cpp
 OBJS = $(SRCS:.c=.o)
 
 $(NAME) :
