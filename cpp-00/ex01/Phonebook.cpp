@@ -18,19 +18,19 @@ Contact PhoneBook::SetInfos(){
 	std::cout <<  "*=================================================*" << std::endl;
 	std::cout << "Please enter the required contact's informations !!" << std::endl;
 	std::cout << "First name :" << std::endl;
-	while(tmp[0].empty())
+	while(tmp[0].empty() && !std::cin.eof())
 		getline(std::cin, tmp[0]);
 	std::cout << "Last name :" << std::endl;
-	while(tmp[1].empty())
+	while(tmp[1].empty() && !std::cin.eof())
 		getline(std::cin, tmp[1]);
 	std::cout << "Nickname :" << std::endl;
-	while(tmp[2].empty())
+	while(tmp[2].empty() && !std::cin.eof())
 		getline(std::cin, tmp[2]);
 	std::cout << "Phone number :" << std::endl;
-	while(tmp[3].empty())
+	while(tmp[3].empty() && !std::cin.eof())
 		getline(std::cin, tmp[3]);
 	std::cout << "Darkest secret :" << std::endl;
-	while(tmp[4].empty())
+	while(tmp[4].empty() && !std::cin.eof())
 		getline(std::cin, tmp[4]);
 	std::cout <<  "*=================================================*" << std::endl;
 
@@ -68,8 +68,10 @@ void PhoneBook::SearchContact(){
 		DisplayContact(index);
 	std::cout <<  "*===========================================*" << std::endl;
 	std::cout << "which contact you would like to see ?" << std::endl;
-	if (!(std::cin >> index) || index < 1 || index > this->ContactsNumber)
+	while (!(std::cin >> index) || index < 0 || index >= this->ContactsNumber)
 	{
+		if(std::cin.eof())
+			return;
 		std::cout << "Error, please enter a valid index :";
 		std::cin.clear();
 		std::cin.ignore(10000,'\n');

@@ -1,1 +1,0 @@
-Appends a copy of a substring of str. The substring is the portion of str that begins at the character position subpos and spans sublen characters (or until the end of str, if either str is too short or if sublen is string::npos).

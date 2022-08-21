@@ -23,7 +23,7 @@ int main(int argc, char **argv)
 		while(argv[++i])
 		{
 			std::string arg(argv[i]);
-			for(int j = 0; j < arg.length(); j++)
+			for(int j = 0; (unsigned)j < arg.length(); j++)
 				arg[j] = toupper(arg[j]);
 			std::cout << arg;
 		}

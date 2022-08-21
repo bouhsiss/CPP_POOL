@@ -1,10 +1,11 @@
 NAME   = phonebook
 CC	= clang++
-CFLAGS = -Wall -Wextra -Werror -std=c++98 -fsanitize=address
-SRCS = ./Phonebook.cpp ./contact.cpp ./main.cpp
-OBJS = $(SRCS:.c=.o)
+CFLAGS = -Wall -Wextra -Werror -std=c++98
+SRCS = ./Phonebook.cpp ./contact.cpp ./main.cpp 
+OBJS = $(SRCS:.cpp=.o)
 
 $(NAME) :
+		$(CC) $(CFLAGS) -c $(SRCS) 
 		$(CC) $(CFLAGS) -o $(NAME) $(OBJS)
 
 all : $(NAME)
@@ -12,7 +13,7 @@ all : $(NAME)
 clean :
 		rm -f $(OBJS)
 
-fclean:
+fclean: clean
 		rm -f $(NAME)
 
 re : fclean all

@@ -22,7 +22,12 @@ int main(){
 	std::cout << "    *  EXIT  *   " << std::endl;
 	while(1)
 	{
-		std::cin >> command;
+		getline(std::cin, command);
+		if(std::cin.eof())
+		{
+			std::cout << "invalid input" << std::endl;
+			break;
+		}
 		if (command == "ADD" || command == "add")
 			  book.AddContact();
 		else if(command == "SEARCH" || command == "search")

@@ -3,7 +3,11 @@
 int main(){
 	int N;
 	std::cout << "enter how many zombie you want to create ?" << std::endl;
-	if(!(std::cin >> N)){
+	while(!(std::cin >> N)){
+		if (std::cin.eof()){
+			std::cout << "invalid input" << std::endl;
+			return(0);
+		}
 		std::cout << "please enter a valid number :";
 		std::cin.clear();
 		std::cin.ignore(10000,'\n');

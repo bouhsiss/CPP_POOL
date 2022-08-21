@@ -4,8 +4,7 @@
 
 void ft_replace(std::string &buffer, std::string s1, std::string s2){
 	std::string NewBuffer = "";
-	int i = 0;
-	int j = 0;
+	unsigned int i = 0;
 
 	while(buffer.length() != 0 ){
 		i = 0;
@@ -14,12 +13,9 @@ void ft_replace(std::string &buffer, std::string s1, std::string s2){
 			i += buffer.length();
 		}
 		else{
-			while(i < buffer.find(s1)){
-				NewBuffer = NewBuffer + buffer[i];
-				i++;
-			}
+			NewBuffer.append(buffer, 0, buffer.find(s1));
 			NewBuffer.append(s2);
-			i += s1.length();
+			i += (buffer.find(s1) - i)  + s1.length();
 		}
 		buffer.erase(0, i);
 	}
@@ -39,12 +35,15 @@ int main(int ac, char **av){
 		indata.open(filename);
 		if(!indata)
 			std::cerr << "error: could not open file" << std::endl;
-		if(indata.is_open())
-			getline(indata, buffer);
-		ft_replace(buffer, s1, s2);
-		filename = filename + ".replace";
-		ofdata.open(filename);
-		ofdata << buffer;
-		ofdata.close();
+		if(indata.is_open()){
+			filename = filename + ".replace";
+			ofdata.open(filename);
+			while(getline(indata, buffer)){
+				ft_replace(buffer, s1, s2);
+				ofdata << buffer;
+				ofdata << std::endl;
+			}
+			ofdata.close();	
+		}
 	}
 }
