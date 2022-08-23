@@ -6,11 +6,10 @@ Harl::~Harl(){}
 
 void Harl::complain(std::string level){
 	FunctionsPtrs actions[4] = {&Harl::debug, &Harl::info, &Harl::warning, &Harl::error};
-	std::string	actionslevels_uc[4] = {"DEBUG", "INFO", "WARNING", "ERROR"};
-	std::string actionslevels_lc[4] = {"debug", "info", "warning", "error"};
+	std::string	actionslevels[4] = {"DEBUG", "INFO", "WARNING", "ERROR"};
 
 	for(int i=0; i < 4; i++){
-		if(!level.compare(actionslevels_lc[i]) || !level.compare(actionslevels_uc[i]))
+		if(!level.compare(actionslevels[i]))
 			(this->*actions[i])();
 	}
 }
