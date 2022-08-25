@@ -3,6 +3,8 @@
 		"string": "cpp",
 		"__locale": "cpp",
 		"__string": "cpp",
-		"string_view": "cpp"
+		"string_view": "cpp",
+		"iosfwd": "cpp",
+		"ostream": "cpp"
 	}
 }
