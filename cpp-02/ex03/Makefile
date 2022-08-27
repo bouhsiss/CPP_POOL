@@ -1,7 +1,7 @@
-NAME   = ex01
+NAME   = ex03
 CC	= clang++
 CFLAGS = -Wall -Wextra -Werror -std=c++98
-SRCS = ./main.cpp ./Fixed.cpp
+SRCS = ./main.cpp ./Fixed.cpp ./Point.cpp ./bsp.cpp
 OBJS = $(SRCS:.cpp=.o)
 
 $(NAME) :

@@ -18,8 +18,7 @@ Fixed::Fixed(const Fixed& FixedObject){
 	*this = FixedObject;
 }
 
-Fixed::~Fixed(){
-}
+Fixed::~Fixed(){}
 
 /*--------- parametrized constructors  ----------*/
 
@@ -90,6 +89,7 @@ Fixed Fixed::operator-(const Fixed& FixedObject) const{
 	ret.FixedValue = this->FixedValue - FixedObject.FixedValue;
 	return(ret);
 }
+
 
 Fixed Fixed::operator*(const Fixed& FixedObject) const{
 	Fixed ret(this->toFloat() * FixedObject.toFloat());

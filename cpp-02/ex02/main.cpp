@@ -1,12 +1,17 @@
-#include"Fixed.hpp"
+#include "Fixed.hpp"
+#include <iostream>
 
-int main(){
-	Fixed instance(2);
-	Fixed instance1(2);
-	
-	std::cout << instance + instance1 << std::endl;
-	std::cout << instance - instance1 << std::endl;
-	std::cout << instance * instance1 << std::endl;
-	std::cout << instance / instance1 << std::endl;
-
+int main( void ) {
+	Fixed a; 
+	Fixed const b( Fixed( 5.05f ) * Fixed( 2 ) );
+	std::cout << std::boolalpha;
+	std::cout << (a > b) << std::endl;
+	std::cout << a << std::endl;
+	std::cout << ++a << std::endl;
+	std::cout << a << std::endl;
+	std::cout << a++ << std::endl;
+	std::cout << a << std::endl;
+	std::cout << b << std::endl;
+	std::cout << Fixed::max( a, b ) << std::endl;
+	return(0);
 }
