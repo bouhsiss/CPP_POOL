@@ -1,7 +1,7 @@
-NAME   = ./ex02
+NAME   = ./ex00
 CC	= clang++
-CFLAGS = -Wall -Wextra -Werror -std=c++98
-SRCS = ./main.cpp ./ClapTrap.cpp ./ScavTrap.cpp ./FragTrap.cpp
+CFLAGS = -Wall -Wextra -Werror -std=c++98 -Wshadow
+SRCS = ./main.cpp ./Dog.cpp ./Cat.cpp ./Animal.cpp ./Brain.cpp
 OBJS = $(SRCS:.cpp=.o)
 
 $(NAME) :

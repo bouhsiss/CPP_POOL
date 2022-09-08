@@ -1,9 +1,18 @@
 #include"FragTrap.hpp"
 
-FragTrap::FragTrap(){}
+FragTrap::FragTrap() : ClapTrap() {
+	std::cout << "FragTrap has been constructed." << std::endl;
+	this->Name = "";
+	this->HitPoints = 100;
+	this->EnergyPoints = 100;
+	this->AttackDamage = 30;
+}
 
-FragTrap::FragTrap(std::string NameVal) : ClapTrap(NameVal){
-	std::cout << "FragTrap parametrized constructor called ." << std::endl;
+FragTrap::FragTrap(std::string Name) : ClapTrap(Name){
+	std::cout << "FragTrap " << Name << " has been constructed." << std::endl;
+	this->HitPoints = 100;
+	this->EnergyPoints = 100;
+	this->AttackDamage = 30;
 }
 
 FragTrap& FragTrap::operator=(const FragTrap& obj) {
@@ -24,6 +33,26 @@ FragTrap::~FragTrap() {
 	std::cout << "FragTrap destructor called." << std::endl;
 }
 
+void FragTrap::attack(const std::string& target) {
+	if(EnergyPoints){
+		std::cout << "FragTrap " << target << " has been striked by FragTrap " << Name 
+		<< ", causing " << AttackDamage << " points of damage!" << std::endl;
+		EnergyPoints--;
+	}
+	else{
+		std::cout << "FragTrap " << Name << " doesn't have enough energy points to attack." 
+			<< std::endl; 
+	}
+}
+
+void FragTrap::beRepaired(unsigned int amount) {
+	ClapTrap::beRepaired(amount);
+}
+
+void FragTrap::takeDamage(unsigned int amount) {
+	ClapTrap::takeDamage(amount);
+}
+
 void FragTrap::highFiveGuys(void){
-	std::cout << "High five guuuuuuuys" << std::endl;
+	std::cout << Name <<  " ---> i kinda wanna high five guys :(" << std::endl;
 }

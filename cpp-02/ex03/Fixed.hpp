@@ -38,7 +38,6 @@ class Fixed{
 		static const Fixed& max(Fixed& a, Fixed& b){return( a.FixedValue < b.FixedValue) ? b : a;};
 		static const Fixed& max(const Fixed& a, const Fixed& b){return( a.FixedValue < b.FixedValue) ? b : a;};
 		friend std::ostream& operator<<(std::ostream& os, const Fixed& obj);
-
 };
 
 std::ostream& operator<<(std::ostream& os, const Fixed& obj);

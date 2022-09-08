@@ -2,32 +2,38 @@
 #include"FragTrap.hpp"
 
 int main(){
+	/* [#########  ClapTrap tests #########] 
+	ClapTrap robot1("Machina");
+	ClapTrap robot2("Random Bot");
+
+	std::cout << std::endl << robot1 << std::endl;
+	std::cout << robot2 << std::endl;
+	robot1.attack(robot2.getName());
+	robot2.takeDamage(5);
+	robot2.beRepaired(5);*/
+
+	/* [#########  ScavTrap tests #########] 
 	ScavTrap robot1("Machina");
 	ScavTrap robot2("Random Bot");
-	FragTrap robot3("idk");
-	FragTrap robot4("houda");
 
+	std::cout << std::endl << robot1 << std::endl;
+	std::cout << robot2 << std::endl;
 	robot1.attack(robot2.getName());
 	robot2.takeDamage(5);
 	robot2.beRepaired(5);
-	robot2.attack(robot1.getName());
-	robot1.takeDamage(15);
-	robot1.beRepaired(1);
-	robot2.attack(robot1.getName());
-	robot1.takeDamage(10);
-	robot2.attack(robot1.getName());
-	robot1.takeDamage(1);
-	robot1.beRepaired(1);
+	robot1.guardGate();
+	robot2.guardGate();
+	std::cout << std::endl; */
 
-	robot3.attack(robot4.getName());
-	robot4.takeDamage(5);
-	robot4.beRepaired(5);
-	robot4.attack(robot3.getName());
-	robot3.takeDamage(15);
-	robot3.beRepaired(1);
-	robot4.attack(robot3.getName());
-	robot3.takeDamage(10);
-	robot4.attack(robot3.getName());
-	robot3.takeDamage(1);
-	robot3.beRepaired(1);
+	FragTrap robot1("Machina");
+	FragTrap robot2("Random Bot");
+
+	std::cout << std::endl << robot1 << std::endl;
+	std::cout << robot2 << std::endl;
+	robot1.attack(robot2.getName());
+	robot2.takeDamage(5);
+	robot2.beRepaired(5);
+	robot1.highFiveGuys();
+	robot2.highFiveGuys();
+	std::cout << std::endl;
 }
