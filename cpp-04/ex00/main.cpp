@@ -17,5 +17,9 @@ int main()
 	const WrongAnimal* smolkat = new WrongCat();
 	std::cout << smolkat->getType() << " " << std::endl;
 	smolkat->makeSound();
+	delete(meta);
+	delete(i);
+	delete(j);
+	delete(smolkat);
 	return 0;
 }

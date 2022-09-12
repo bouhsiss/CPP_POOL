@@ -9,7 +9,7 @@ class Cat : public Animal {
 		Cat();
 		Cat& operator=(const Cat&);
 		Cat(const Cat&);
-		virtual ~Cat();
+		~Cat();
 		void makeSound(void) const;
 		Brain *getBrain(void) const;
 		void  setBrain(std::string idea);

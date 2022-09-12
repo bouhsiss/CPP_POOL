@@ -9,7 +9,7 @@ class Dog : public Animal {
 		Dog();
 		Dog& operator=(const Dog&);
 		Dog(const Dog&);
-		virtual ~Dog();
+		~Dog();
 		void makeSound(void) const;
 		Brain *getBrain(void) const;
 		void setBrain(std::string idea);
