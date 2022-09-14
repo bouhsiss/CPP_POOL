@@ -1,5 +1,5 @@
 NAME   = Accounts
-CC	= clang++
+CC	= c++
 CFLAGS = -Wall -Wextra -Werror -std=c++98 -fsanitize=address
 SRCS = ./Account.cpp  ./tests.cpp
 OBJS = $(SRCS:.cpp=.o)

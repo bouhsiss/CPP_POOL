@@ -1,5 +1,5 @@
 NAME   = ./ex00
-CC	= clang++
+CC	= c++
 CFLAGS = -Wall -Wextra -Werror -std=c++98 -Wshadow
 SRCS = ./main.cpp ./Dog.cpp ./Cat.cpp ./Animal.cpp ./WrongAnimal.cpp ./WrongCat.cpp
 OBJS = $(SRCS:.cpp=.o)
