@@ -4,6 +4,10 @@
 #include<string>
 #include<iostream>
 #include<exception>
+#include<cstdlib>
+
+#define MIN_RANGE 150
+#define MAX_RANGE 1
 
 class Bureaucrat {
 	public :
@@ -14,19 +18,21 @@ class Bureaucrat {
 		~Bureaucrat();
 		const std::string& getName(void) const;
 		int getGrade(void) const;
-		void incrementBureaucrat(void);
-		void decrementBureaucrat(void);
+		void incrementGrade(void);
+		void decrementGrade(void);
 		class GradeTooHighException : public std::exception  {
 			public :
-				char *what();
+				const char *what() const throw();
 		};
 		class GradeTooLowException : public std::exception {
 			public :
-				char *what();
+				const char *what() const throw();
 		};
 	private :
 		const std::string	Name;
 		int 				Grade;
 };
+
+std::ostream& operator<<(std::ostream& os, const Bureaucrat& obj);
 
 #endif
