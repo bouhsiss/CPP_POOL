@@ -4,22 +4,22 @@ Bureaucrat::Bureaucrat() {
     std::cout << "Bureaucrat default constructor called." << std::endl;
 }
 
-Bureaucrat::Bureaucrat(std::string NameVal, int gradeVal) : Name(NameVal){
-    if(gradeVal < 1)
+Bureaucrat::Bureaucrat(std::string Name, int Grade) : _Name(Name){
+    if(Grade < 1)
         throw (Bureaucrat::GradeTooHighException());
-    if (gradeVal > 150)
+    if (Grade > 150)
         throw (Bureaucrat::GradeTooLowException());
     std::cout << "Bureaucrat constructor called." << std::endl;
-    this->Grade = gradeVal;
+    this->_Grade = Grade;
 }
 
 Bureaucrat& Bureaucrat::operator=(const Bureaucrat& obj) {
     std::cout << "Bureaucrat assignment operator called." << std::endl;
-    Grade = obj.Grade;
+    this->_Grade = obj._Grade;
     return(*this);
 }
 
-Bureaucrat::Bureaucrat(const Bureaucrat& obj) : Name(obj.Name) {
+Bureaucrat::Bureaucrat(const Bureaucrat& obj) : _Name(obj._Name) {
     std::cout << "copy constructor called." << std::endl;
     (*this) = obj;
 }
@@ -28,24 +28,24 @@ Bureaucrat::~Bureaucrat() {
     std::cout << "Bureaucrat default destructor called." << std::endl;
 }
 
-const std::string& Bureaucrat::getName(void) const { return(Name); }
+const std::string& Bureaucrat::getName(void) const { return(_Name); }
 
-int Bureaucrat::getGrade(void) const { return(Grade);}
+int Bureaucrat::getGrade(void) const { return(_Grade);}
 
 void Bureaucrat::incrementGrade(void) {
-    if (Grade == MAX_RANGE)
+    if (this->_Grade == MAX_RANGE)
         throw GradeTooHighException();
     else {
-        Grade--;
+       this->_Grade--;
         std::cout << "Grade Incremennted." << std::endl;
     }
 }
 
 void Bureaucrat::decrementGrade(void) {
-    if (Grade == MIN_RANGE)
+    if (this->_Grade == MIN_RANGE)
         throw GradeTooLowException();
     else {
-        Grade++;
+        this->_Grade++;
         std::cout <<"Grade decremented." << std::endl;
     }
 }

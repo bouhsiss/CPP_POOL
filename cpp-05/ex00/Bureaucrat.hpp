@@ -29,8 +29,8 @@ class Bureaucrat {
 				const char *what() const throw();
 		};
 	private :
-		const std::string	Name;
-		int 				Grade;
+		const std::string	_Name;
+		int 				_Grade;
 };
 
 std::ostream& operator<<(std::ostream& os, const Bureaucrat& obj);

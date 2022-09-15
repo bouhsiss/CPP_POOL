@@ -9,7 +9,6 @@ class Bureaucrat;
 
 class Form {
 	public:
-		Form();
 		Form(std::string, int, int);
 		Form& operator=(const Form&);
 		Form(const Form&);
@@ -19,6 +18,7 @@ class Form {
 		int getReqSignGrade(void) const;
 		int getReqExecutionGrade(void) const;
 		bool beSigned(Bureaucrat& );
+		virtual void funt(void) = 0;
 		class GradeTooHighException : public std::exception {
 			public :
 				const char* what() const throw();
@@ -27,7 +27,8 @@ class Form {
 			public :
 				const char* what() const throw();
 		};
-	private :
+	protected :
+		Form();
 		const std::string _Name;
 		bool _isSigned;
 		const int _ReqSignGrade;
