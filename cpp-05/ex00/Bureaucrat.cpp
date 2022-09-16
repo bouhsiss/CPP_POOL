@@ -1,5 +1,8 @@
 #include"Bureaucrat.hpp"
 
+
+/* Canonical form */
+
 Bureaucrat::Bureaucrat() {
     std::cout << "Bureaucrat default constructor called." << std::endl;
 }
@@ -28,9 +31,12 @@ Bureaucrat::~Bureaucrat() {
     std::cout << "Bureaucrat default destructor called." << std::endl;
 }
 
+/*   accessors  */
 const std::string& Bureaucrat::getName(void) const { return(_Name); }
 
 int Bureaucrat::getGrade(void) const { return(_Grade);}
+
+/*    methods    */
 
 void Bureaucrat::incrementGrade(void) {
     if (this->_Grade == MAX_RANGE)
@@ -50,6 +56,7 @@ void Bureaucrat::decrementGrade(void) {
     }
 }
 
+/*    exception functions    */
 const char *Bureaucrat::GradeTooHighException::what() const throw() {
     return ("Grade too high.");
 }
@@ -57,6 +64,8 @@ const char *Bureaucrat::GradeTooHighException::what() const throw() {
 const char *Bureaucrat::GradeTooLowException::what() const throw() {
     return ("Grade too low.");
 }
+
+/*    overload    */
 
 std::ostream& operator<<(std::ostream& os, const Bureaucrat& obj) {
     os << obj.getName() << ", Bureaucrat grade " << obj.getGrade() << "." << std::endl;

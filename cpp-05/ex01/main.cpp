@@ -30,7 +30,7 @@ int main()
 		std::cout << e.what() << std::endl;
 	}
 	try {
-		std::cout << std::endl << "[SECOND TRY]" << std::endl;
+		std::cout << std::endl << " ----------------------[SECOND TRY]-----------------------" << std::endl << std::endl;
 		Bureaucrat Bureaucrat("Steve", 40); 
 		Form Form("Form_6", 1, 1);
 		std::cout << "        ===========" << std::endl;
