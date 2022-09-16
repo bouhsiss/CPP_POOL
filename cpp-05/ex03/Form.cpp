@@ -44,11 +44,15 @@ const char *Form::GradeTooLowException::what() const throw() {
 }
 
 
-void Form::beSigned(Bureaucrat& obj){
-	if(obj.getGrade() <= _ReqSignGrade)
+bool Form::beSigned(Bureaucrat& obj){
+	if(obj.getGrade() <= _ReqSignGrade) {
 		_isSigned = true;
-	else 
+		return(true);
+	}
+	else {
 		throw (Form::GradeTooLowException());
+		return(false);
+	}
 }
 
 
