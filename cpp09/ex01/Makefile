@@ -1,5 +1,5 @@
 
-NAME   = btc
+NAME   = RPN
 CC	= c++
 CFLAGS = -fsanitize=address -std=c++98
 SRCS = ./main.cpp ./RPN.cpp

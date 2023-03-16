@@ -13,12 +13,6 @@ class BitcoinExchange {
 		std::map<std::string, double> btcPriceAndDate;
 		std::string date;
 		double value;
-	public :
-		BitcoinExchange();
-		BitcoinExchange(const BitcoinExchange& other);
-		BitcoinExchange& operator=(const BitcoinExchange& other);
-		~BitcoinExchange();
-		void btcCalculator(std::string inputFileName);
 		bool checkValueFormat(std::string value);
 		bool checkDateFormat(std::string date);
 		bool checkInputFormat(std::string inputFileLine);
@@ -26,4 +20,10 @@ class BitcoinExchange {
 		double calculatePrice(double ExchangeRate);
 		void displayResult(double result);
 		void parseDatabaseFile();
+	public :
+		BitcoinExchange();
+		BitcoinExchange(const BitcoinExchange& other);
+		BitcoinExchange& operator=(const BitcoinExchange& other);
+		~BitcoinExchange();
+		void btcCalculator(std::string inputFileName);
 }; 
