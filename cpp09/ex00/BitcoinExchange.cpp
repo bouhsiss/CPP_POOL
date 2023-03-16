@@ -65,7 +65,7 @@ bool BitcoinExchange::checkDateFormat(std::string date) {
 		return(ErrorMessage("Invalid date :", month));
 	if(!(stoi(day) >= 0 && stoi(day) <= 31))
 		return(ErrorMessage("Invalid date:", day));
-	
+	this->date = date;
 	return(true);
 }
 
@@ -76,6 +76,7 @@ bool BitcoinExchange::checkValueFormat(std::string value) {
 		return(ErrorMessage("Error : number too large", value));
 	if(!strisdigit(value))
 		return(ErrorMessage("Error : bad input", value));
+	this->value = value;
 	return(true);
 }
 
@@ -100,7 +101,10 @@ int BitcoinExchange::btcCalculator(std::string inputFileName) {
 		while(getline(inputFile, line)) {
 			if(checkInputFormat(line)) {
 				std::map<std::string, float>::iterator It;
-				It = btcPriceAndDate.find()
+				It = btcPriceAndDate.find(date);
+				if(It != btcPriceAndDate.end())
+					calculateRate(btcPriceAndDate->
+					)
 			}
 		}
 	}
