@@ -4,9 +4,13 @@ BitcoinExchange::BitcoinExchange() {
 	parseDatabaseFile();
 }
 
-BitcoinExchange::BitcoinExchange(const BitcoinExchange& other) {}
+BitcoinExchange::BitcoinExchange(const BitcoinExchange& other) {
+	*this = other;
+}
 
 BitcoinExchange& BitcoinExchange::operator=(const BitcoinExchange& other) {
+	this->date = other.date;
+	this->value = other.value;
 	return(*this);
 }
 
@@ -14,18 +18,20 @@ BitcoinExchange::~BitcoinExchange() {}
 
 void BitcoinExchange::parseDatabaseFile() {
 	std::ifstream DBfile("./data.csv");
+	char *endptr;
 
 	if(DBfile.is_open()) {
 		std::string line;
-		std::getline(DBfile, line);
+		getline(DBfile, line);
 		while(getline(DBfile, line)){
 			std::stringstream sstr(line);
 			std::string key;
 			std::string value;
 			getline(sstr, key, ',');
 			getline(sstr, value, ',');
-			btcPriceAndDate.insert(std::pair<std::string, float>(key, stof(value)));
+			btcPriceAndDate.insert(std::pair<std::string, double>(key, strtod(value.c_str(), &endptr)));
 		}
+		DBfile.close();
 	}
 	else
 		std::cout << "Error: could not open file" << std::endl;
@@ -33,12 +39,12 @@ void BitcoinExchange::parseDatabaseFile() {
 
 bool strisdigit(std::string str) {
 	int i = 0;
+
 	while(isspace(str[i]))
-		i++;
-	while(str[i]) {
-		if(std::isdigit(str[i]) == 0)
-			return(false);
-	}
+		str.erase(0);
+	int found = str.find_first_not_of("0123456789");
+	if(found != str.npos)
+		return(false);
 	return(true);
 }
 
@@ -48,6 +54,7 @@ bool ErrorMessage(std::string message, std::string Error) {
 }
 
 bool BitcoinExchange::checkDateFormat(std::string date) {
+	char *endptr;
 	std::string year;
 	std::string month;
 	std::string day;
@@ -59,24 +66,25 @@ bool BitcoinExchange::checkDateFormat(std::string date) {
 	getline(sstr, day, ' ');
 	if(!(strisdigit(year) && strisdigit(month) && strisdigit(day)))
 		return(ErrorMessage("Invalid date :", date));
-	if(!(stoi(year) >= 2009 && stoi(year) <= 2022 ))
+	if(!(strtod(year.c_str(), &endptr) >= 2009 && strtod(year.c_str(), &endptr) <= 2022 ))
 		return(ErrorMessage("year out of range :", year));
-	if(!(stoi(month) >= 1 && stoi(month) <= 12))
+	if(!(strtod(month.c_str(), &endptr) >= 1 && strtod(month.c_str(), &endptr) <= 12))
 		return(ErrorMessage("Invalid date :", month));
-	if(!(stoi(day) >= 0 && stoi(day) <= 31))
+	if(!(strtod(day.c_str(), &endptr) >= 0 && strtod(day.c_str(), &endptr) <= 31))
 		return(ErrorMessage("Invalid date:", day));
 	this->date = date;
 	return(true);
 }
 
 bool BitcoinExchange::checkValueFormat(std::string value) {
-	if(stoi(value) < 0)
+	char* endptr;
+	if(strtod(value.c_str(), &endptr) < 0)
 		return(ErrorMessage("Error : not a positive number", value));
-	if(stoi(value) > 1000)
+	if(strtod(value.c_str(), &endptr) > 1000)
 		return(ErrorMessage("Error : number too large", value));
-	if(!strisdigit(value))
-		return(ErrorMessage("Error : bad input", value));
-	this->value = value;
+	if(*endptr != '\0')
+		return(ErrorMessage("Error : not a valid input", value));
+	this->value = strtod(value.c_str(), &endptr);
 	return(true);
 }
 
@@ -92,7 +100,22 @@ bool BitcoinExchange::checkInputFormat(std::string inputFileLine) {
 	return(checkDateFormat(date) && checkValueFormat(value));
 }
 
-int BitcoinExchange::btcCalculator(std::string inputFileName) {
+double BitcoinExchange::calculatePrice(double price) {
+	return(price * this->value);
+}
+
+double BitcoinExchange::findFirstKeyLessThan(std::string key) {
+	std::map<std::string, double>::iterator upper_key = btcPriceAndDate.upper_bound(key);
+	if(upper_key != btcPriceAndDate.begin())
+		upper_key--;
+	return(upper_key->second);
+}
+
+void BitcoinExchange::displayResult(double result) {
+	std::cout << this->date << " => " << this->value << " = " << result << std::endl;
+}
+
+void BitcoinExchange::btcCalculator(std::string inputFileName) {
 	std::ifstream inputFile(inputFileName);
 
 	if(inputFile.is_open()) {
@@ -100,13 +123,15 @@ int BitcoinExchange::btcCalculator(std::string inputFileName) {
 		std::getline(inputFile, line);
 		while(getline(inputFile, line)) {
 			if(checkInputFormat(line)) {
-				std::map<std::string, float>::iterator It;
+				std::map<std::string, double>::iterator It;
 				It = btcPriceAndDate.find(date);
 				if(It != btcPriceAndDate.end())
-					calculateRate(btcPriceAndDate->
-					)
+					displayResult(calculatePrice(It->second));
+				else
+					displayResult(calculatePrice(findFirstKeyLessThan(this->date)));
 			}
 		}
+		inputFile.close();
 	}
 	else
 		std::cout << "Error : could not open file : " << inputFileName << std::endl;
