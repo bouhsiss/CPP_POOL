@@ -6,4 +6,5 @@ int main (int ac, char ** av) {
         return(EXIT_FAILURE);
     }
 	PmergeMe test(ac, av);
+	test.PmergeSort();
 }
